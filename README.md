@@ -156,5 +156,5 @@ it to a faster speed, edit the speed, change the i2c configuration in the `/boot
 file like this:
 
 	#dtparam=i2c_arm=on                          # original configuration
-	dtparam=i2c_arm=on,i2c_arm_baudrate=800000   # new configuration
+	dtparam=i2c_arm=on,i2c_arm_baudrate=400000   # new configuration
 
