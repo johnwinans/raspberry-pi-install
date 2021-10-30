@@ -147,3 +147,6 @@ the `/boot/config.txt` file:
 	dtoverlay=disable-wifi
 	dtoverlay=disable-bt
 
+To develop i2c applications in C:
+
+	sudo apt install libi2c-dev
