@@ -150,3 +150,11 @@ the `/boot/config.txt` file:
 To develop i2c applications in C:
 
 	sudo apt install libi2c-dev
+
+Note that the default clock speed for the i2c on the Raspberry PI is 100khz.  To change
+it to a faster speed, edit the speed, change the i2c configuration in the `/boot/config.txt`
+file like this:
+
+	#dtparam=i2c_arm=on                          # original configuration
+	dtparam=i2c_arm=on,i2c_arm_baudrate=800000   # new configuration
+
