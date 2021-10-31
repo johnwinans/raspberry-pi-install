@@ -66,13 +66,14 @@ After the PI reboots, run `raspi-config`:
 	sudo raspi-config
 
 	System Options/Boot
+		Hostname
 		Boot/Auto Login Select boot into desktop or to command line
 			Console Autologin Text console
 	Interfacing Options
-		Turn on camera
 		Turn on SSH
 		SPI
 		I2C
+		Turn on camera
 	Finish
 		reboot = yes
 
