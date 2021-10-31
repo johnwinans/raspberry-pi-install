@@ -16,6 +16,9 @@ On my Ubuntu 20.04 system, I did this to install and run it:
 I could get the basic image onto an SD card like this, but the ctl-shift-X 
 configuration menu failed.
 
+When this completes, check to see if your PC mounted the new SD card image... and if so, then click 
+what ever is necessary to cleanly unmount it so you can then remote it.
+
 
 ## Use the command line on Linux (tested on Ubuntu 20.04):
 
@@ -25,7 +28,7 @@ plug in the SD card and figure out to what device it is connected:
 
 	lsblk -p
 
-**_IF YOU DO THE FOLLOWING WRONG, THE FOLLOWING CAN INSTANTLY AND PERMINANTLY DESTROY EVERY 
+**_IF YOU DO THE FOLLOWING WRONG, IT CAN INSTANTLY AND PERMINANTLY DESTROY EVERY 
 FILE ON YOUR ENTIRE PC!  READ THESE INSTRUCTIONS CAREFULLY... TWICE!!_**
 
 Look at the output from `lsblk` and figure out where the SD card was mounted & the device 
@@ -41,6 +44,9 @@ think it is in use) and then install the image downloaded with `wget` above:
 
 	unzip -p 2021-05-07-raspios-buster-armhf.zip | sudo dd of=/dev/sdc bs=4M conv=fsync status=progress
 
+
+When this completes, check to see if your PC mounted the new SD card image... and if so, then click 
+what ever is necessary to cleanly unmount it so you can then remote it.
 
 
 # Configure the PI
