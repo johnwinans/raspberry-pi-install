@@ -58,7 +58,7 @@ When it comes back on line, open a terminal window (or SSH into it)
 and apply any updates:
 
 	sudo apt update
-	sudo apt upgrade
+	sudo apt upgrade -y
 	sudo reboot
 
 After the PI reboots, run `raspi-config`:
@@ -88,7 +88,7 @@ for ssh and log in like this:
 
 I install an editor that I like:
 
-	sudo apt install vim
+	sudo apt install vim -y
 
 ...and configure options that I like by creating a file named `.vimrc` in the PI home directory
 and the root home directory that contains this:
@@ -122,6 +122,10 @@ I add the following to the end of my .bashrc because the defaults don't make sen
 	export COLLATE=POSIX
 	export EDITOR=vi
 
+	# nix the annoying quoted ls output...
+	export QUOTING_STYLE=literal
+	alias ll='ls -lF'
+	alias ls='ls -F'
 
 Prepare your `git` environment for future use:
 
@@ -155,7 +159,7 @@ the `/boot/config.txt` file:
 
 To develop i2c applications in C:
 
-	sudo apt install libi2c-dev
+	sudo apt install libi2c-dev -y
 
 Note that the default clock speed for the i2c on the Raspberry PI is 100khz.  To change
 it to a faster speed, edit the speed, change the i2c configuration in the `/boot/config.txt`
@@ -163,4 +167,35 @@ file like this:
 
 	#dtparam=i2c_arm=on                          # original configuration
 	dtparam=i2c_arm=on,i2c_arm_baudrate=400000   # new configuration
+
+
+# Set up SSH
+
+(This assumes you already have ssh set up on your primary workstation.)
+
+On the Raspberry PI, as the pi user, create a .ssh directory with the proper permissions:
+
+	mkdir ~/.ssh
+	chmod 700 ~/.ssh
+
+Copy over your `authorized_keys` from your PC:
+
+	scp -F /dev/null ~/.ssh/authorized_keys pi@raspberrypi.local:.ssh/authorized_keys
+
+At this point, you should be able to log into the PI with your ssh key.
+It is now advisable to disable password-based ssh access to your PI so that noone
+can access it over the network without your private ssh key.  To do this, edit
+the `/etc/ssh/sshd_config` file and change the following comment line:
+
+	#PasswordAuthentication yes
+
+by making a copy of it (so you remember what the original/default is), remove the 
+`#` and change the `yes` to `no` so it looks like this:
+
+	#PasswordAuthentication yes
+	PasswordAuthentication no
+
+This change will not be applied until the next reboot or you restart the `sshd` server like this:
+
+	sudo /etc/init.d/ssh restart
 
