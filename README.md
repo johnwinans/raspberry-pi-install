@@ -37,7 +37,7 @@ path.  The following assumes that it is `/dev/sdc`
 
 Wipe out any existing data on the SD card:
 
-	sudo dd if=/dev/zero of=/dev/sdc count=1000 bs=1M
+	sudo dd if=/dev/zero of=/dev/sdc count=1 bs=1M
 
 I remove and re-insert the SD card at this point (to make sure that the OS does not 
 think it is in use) and then install the image downloaded with `wget` above:
