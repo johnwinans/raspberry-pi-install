@@ -2,6 +2,8 @@
 
 How I create SD and configure SD cards for a Raspberry PI
 
+Note that there is a [YouTube Video](https://youtu.be/Mty1iGqhYuU) that discusses this REPO.
+
 ## Use the imager
 
 Install and use the Raspberry PI SD card imager as documented here:
