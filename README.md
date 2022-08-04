@@ -19,12 +19,12 @@ I could get the basic image onto an SD card like this, but the ctl-shift-X
 configuration menu failed.
 
 When this completes, check to see if your PC mounted the new SD card image... and if so, then click 
-what ever is necessary to cleanly unmount it so you can then remote it.
+what ever is necessary to cleanly unmount it so you can then remove it.
 
 
 ## Use the command line on Linux (tested on Ubuntu 20.04):
 
-	wget https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-full.zip
+	wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2022-04-07/2022-04-04-raspios-bullseye-armhf-lite.img.xz
 	
 plug in the SD card and figure out to what device it is connected:
 
@@ -44,8 +44,7 @@ Wipe out any existing data on the SD card:
 I remove and re-insert the SD card at this point (to make sure that the OS does not 
 think it is in use) and then install the image downloaded with `wget` above:
 
-	unzip -p 2021-05-07-raspios-buster-armhf.zip | sudo dd of=/dev/sdc bs=4M conv=fsync status=progress
-
+	xz --decompress --stdout 2022-04-04-raspios-bullseye-armhf-lite.img.xz | sudo dd of=/dev/sdc bs=4M conv=fsync
 
 When this completes, check to see if your PC mounted the new SD card image... and if so, then click 
 what ever is necessary to cleanly unmount it so you can then remote it.
@@ -108,15 +107,19 @@ If you cannot paste the above in to .vimrc while running vim, then do it using n
 cat like this:
 
 	cat - > ~/.vimrc
-    set ts=4
-    setlocal cm=blowfish2
-    set mouse=
-    set ttymouse=
-    set noshowmatch
-    let g:loaded_matchparen=1
-    :set t_BE=
+	set ts=4
+	setlocal cm=blowfish2
+	set mouse=
+	set ttymouse=
+	set noshowmatch
+	let g:loaded_matchparen=1
+	:set t_BE=
 
 and then press `^D` (or CTRL-D if you prefer).
+
+I also prefer the same `.vim` settings when I am root:
+
+	sudo cp ~/.vimrc ~root
 
 I add the following to the end of my .bashrc because the defaults don't make sense to me:
 
@@ -132,6 +135,7 @@ I add the following to the end of my .bashrc because the defaults don't make sen
 
 Prepare your `git` environment for future use:
 
+	sudo apt install git
 	git config --global user.email "me@example.com"
 	git config --global user.name "John Q. Public"
 
