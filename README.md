@@ -1,8 +1,19 @@
-# Format an SD card
+# Installing raspios on a Raspberry PI 
 
-How I create SD and configure SD cards for a Raspberry PI
+These are my notes on how I create SD and configure SD cards for a Raspberry PI.
 
 Note that there is a [YouTube Video](https://youtu.be/Mty1iGqhYuU) that discusses this REPO.
+
+## 2023-10-20 Update!
+
+I have switched to using the 64-bit version of `raspios`.  The version I last tested is `2023-05-03-raspios-bullseye-arm64-lite` 
+as shown below in the section: *Use the command line on Linux.*
+
+The 64-bit version simplifies the install of things like *ICE40 FPGA* development toolchain.
+
+# Format an SD card
+
+I have used two methods for formatting and installing an image onto an SD card.
 
 ## Use the imager
 
@@ -24,7 +35,7 @@ what ever is necessary to cleanly unmount it so you can then remove it.
 
 ## Use the command line on Linux (tested on Ubuntu 20.04):
 
-	wget https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2022-04-07/2022-04-04-raspios-bullseye-armhf-lite.img.xz
+	wget https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2023-05-03/2023-05-03-raspios-bullseye-arm64-lite.img.xz
 	
 plug in the SD card and figure out to what device it is connected:
 
@@ -44,7 +55,7 @@ Wipe out any existing data on the SD card:
 I remove and re-insert the SD card at this point (to make sure that the OS does not 
 think it is in use) and then install the image downloaded with `wget` above:
 
-	xz --decompress --stdout 2022-04-04-raspios-bullseye-armhf-lite.img.xz | sudo dd of=/dev/sdc bs=4M conv=fsync
+	xz --decompress --stdout 2023-05-03-raspios-bullseye-arm64-lite.img.xz | sudo dd of=/dev/sdc bs=4M conv=fsync
 
 When this completes, check to see if your PC mounted the new SD card image... and if so, then click 
 what ever is necessary to cleanly unmount it so you can then remote it.
