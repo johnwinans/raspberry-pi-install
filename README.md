@@ -114,6 +114,15 @@ and the root home directory that contains this:
 	let g:loaded_matchparen=1
 	:set t_BE=
 
+  	autocmd FileType make setlocal noexpandtab
+	autocmd FileType asm setlocal tabstop=8 expandtab
+	autocmd FileType verilog setlocal tabstop=4 shiftwidth=4 expandtab
+	autocmd FileType pcf setlocal tabstop=4 shiftwidth=4 expandtab
+	syntax on
+
+	set tabstop=4 shiftwidth=4 noexpandtab
+
+
 If you cannot paste the above in to .vimrc while running vim, then do it using nano or
 cat like this:
 
@@ -125,6 +134,15 @@ cat like this:
 	set noshowmatch
 	let g:loaded_matchparen=1
 	:set t_BE=
+
+	autocmd FileType make setlocal noexpandtab
+	autocmd FileType asm setlocal tabstop=8 expandtab
+	autocmd FileType verilog setlocal tabstop=4 shiftwidth=4 expandtab
+	autocmd FileType pcf setlocal tabstop=4 shiftwidth=4 expandtab
+	syntax on
+
+	set tabstop=4 shiftwidth=4 noexpandtab
+
 
 and then press `^D` (or CTRL-D if you prefer).
 
