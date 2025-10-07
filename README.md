@@ -159,8 +159,8 @@ I add the following to the end of my .bashrc because the defaults don't make sen
 
 	# nix the annoying quoted ls output...
 	export QUOTING_STYLE=literal
-	alias ll='ls -lF'
-	alias ls='ls -F'
+	alias ll='ls -lF --color=auto'
+	alias ls='ls -F --color=auto'
 
 Prepare your `git` environment for future use:
 
