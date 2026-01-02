@@ -1,45 +1,59 @@
-# Installing raspios on a Raspberry PI For Embedded Projects
+# Installing Raspberry PI OS for Embedded Projects
 
-These are my notes on how I create SD and configure my Raspberry PIs for projects that I share on YouTube.
+These are my notes on how I create SD and configure Raspberry PIs for projects that I share on YouTube.
 
 Note: This was last updated on 2026-01-01 (Happy New Year!) to reflect installing Raspberry PI OS Lite (64-bit) Trixie.
 
-Note that there is a [YouTube Video](https://youtu.be/Mty1iGqhYuU) that discusses this REPO and shows the `rpi-imager` I used and the editing and setting of other configurations on the PI after it has booted the first time.
+Note that there is a [YouTube Video](https://youtu.be/Mty1iGqhYuU) that discusses this REPO and shows the `rpi-imager` I used as well as how I then edited other configuration settings on the PI after it has booted the first time.
 
 ## 2026-01-01 Update!
 
-The version installed here has been installed using `rpi-imager` on the following systems:
-- Ubuntu 22.04.5 LTS (Jammy Jellyfish)
-- Raspberry PI OS Trixie
+The version installed here has been installed using `rpi-imager` on a Raspberry PI because I could not get the latest imager to work on my desktop daily-driver.  Your mileage may vary.
 
-Note that the 64-bit version simplifies the install of things like *ICE40 FPGA* development toolchain (some of which is not easily buildable on a 32-bit system.)
+If the latest imager works on your system then use it.  Else see below how I created an SD on Linux without an imager.
+
+Note that the 64-bit OS version simplifies the install of things like *ICE40 FPGA* development toolchain (some of which is not easily buildable on a 32-bit system.)
 
 # Format an SD card using rpi-imager 2
 
-Note that using older `rpi-imager` releases (less than 2.0) don't work properly with Trixie as they do not appear to allow you to actually configure anything and thus leave you in search of a screen & keyboard to configure it after the first boot. Even so, this method can get you a basic system up and running that you can install manually.
-
-Note: I have given up on using the method of using `dd` because the evolution of things is making it harder to understand the details of what is needed to get a headless system on line the first time (apparently Raspberry PI can't seem to do it themselves and they *do* know what is going on under the covers.)
+Note that using older `rpi-imager` releases (less than 2.0) don't work properly with Trixie as they do not appear to allow you to actually configure anything and thus leave you in search of a screen & keyboard to configure your PI during the first boot. Even so, this method can get you a basic system up and running that you can then configure manually when it boots.
 
 ## A chicken & egg problem
 
-Since I only have older Ubuntu systems to start with and that do have `rpi-imager` packages, they do *not* have a version 2.x imager release.  Therefore they can not configure Trixie to boot up for headless operation! (Ya know, because creating a config file with 10 things in iot is sooooooooooo hard to do in a manner that can be made compatible across releases!)
+You can run the imager on an existing PI that is already running Trixie.
 
-To address the chicken & egg problem, I was able to burn an SD card on my Ubuntu 22.04 system (that provides `rpi-imager` version 1.7.2) with a 1/2 baked install of the Trixie (with full desktop) such that I could then boot the SD card and manually configure the system using a screen & keyboard to create a login, enable ssh, set the hostname, and so on using `raspi-config`.  After that point, I was able to continue to set up the rest remotely (in a headless mode.) 
+Starting with a Linux box without the `rpi-imager`, I burned an SD card with a desktop Trixie image using the method discussed below.
 
-The point being.... that once I had Trixie running, I could run the lastest version of `rpi-imager` on that PI and use it to *finally* burn an SD card that boots in a useful manner on a headless system!
+**WARNING** Doing this incorrectly can instantly, unrecoverably, destroy the filesystem on the machine you are using. Do not do this if you don't understand the process!!!!! **DO NOT blindly copy these commands expecting everything will be OK.**
 
-On a more recent Ubuntu or Windows system, getting the latest imager to burn your first SD card image might be easer.
+Download the latest OS image from raspberrypi.com.  The one I used while writing these notes is this:
 
-## Burning an SD card using a Raspberry PI running Trixie
+	wget https://downloads.raspberrypi.com/raspios_arm64/images/raspios_arm64-2025-12-04/2025-12-04-raspios-trixie-arm64.img.xz
 
-You can run `rpi-imager` on a Raspberry PI.  As of this writing I was able to use version 2.0.1 on Trixie.
+Insert the SD card you want to image and identify the device name.  Depending on the SD card adapter you are using and the configuration of your machine, it can be any one of a number of places.  This is the critical thing to get right.  Consider using commands like `lsblk` to locate the SD card, then remove the SD card, run `lsblk` again, note that it has gone away, and then finally returns when it is plugged back in... for an absolute positive confirmation of the SD card's device name.
 
+If your machine mounts whatever existing junk might be on your SD card, you will want to unmount it like this:
+
+	sudo umount /dev/sdXXXX
+
+I then wipe and program the SD card like this (on my system, the SD card is `/dev/sdb`):
+
+	SD=/dev/sdb
+	sudo dd if=/dev/zero of=$SD bs=4M count=1 status=progress conv=fsync
+	sudo xzcat 2025-12-04-raspios-trixie-arm64.img.xz | sudo dd of=$SD bs=4M status=progress conv=fsync
+	sync
+
+At this point you have a bootable Trixie SD card with a full desktop that is unconfigured.  You can boot it on a PI with a keyboard and display.  It will ask you to create a user account, set the timezone and so on.  Then you can use it to run the latest `rpi-imager` and create an SD card configured as you want it.
+
+# Burning an SD card using the rpi-imager
+
+You can run `rpi-imager` on any system that supports the latest version (including a Raspberry PI.)  As of this writing I was able to use version 2.0.1 on a Raspberry PI running Trixie with a desktop.
 
 ## Setting up a headless system to boot with ssh enabled
 
-In order to connect to a PI the first time over the network, I use `ssh` with a public key (that the imager lets you paste into a config form.  If it is not obvious what to do, see the video where I show how I did it: .)
+In order to connect to a PI the first time over the network, I use `ssh` with a public key (that the imager lets you paste into a config form.)  Otherwise you can conmfigure it to let you log into it using a password.
 
-Add video link here XXX
+XXX Note the settings in the imager of interest for creating a headless system.  Specifically, set the hostname and enable ssh.
 
 When done imaging a new Sd card, boot it and finish configuring it.
 
