@@ -77,7 +77,7 @@ sudo apt install vim git
 
 Configure `vim` so that it is sane:
 ```
-cat - > ~/.vimrc
+cat - > ~/.vimrc <<EOF
 set ts=4
 setlocal cm=blowfish2
 set mouse=
@@ -93,6 +93,7 @@ autocmd FileType pcf setlocal tabstop=4 shiftwidth=4 expandtab
 syntax on
 
 set tabstop=4 shiftwidth=4 noexpandtab
+EOF
 ```
 
 Press ^D to finish the `cat` command, then copy the same into the root home directory:
@@ -151,7 +152,7 @@ Set up hardware features that you need for your project(s):
 sudo vi /boot/firmware/config.txt
 ```
 
-Add the folling to the bottom of the file:
+Add the following to the bottom of the file:
 ```
 [all]
 enable_uart=1
