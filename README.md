@@ -54,12 +54,13 @@ You can run `rpi-imager` on any system that supports the latest version (includi
 In order to connect to a PI the first time over the network, I use `ssh` with a public key (that the imager lets you paste into a config form.)  Otherwise you can conmfigure it to let you log into it using a password.
 
 XXX Note the settings in the imager of interest for creating a headless system.  Specifically, set the hostname and enable ssh.
+XXX add screenshots of what to do here.
 
-When done imaging a new Sd card, boot it and finish configuring it.
+When done imaging a new SD card, boot it and finish configuring it.
 
 # Configure the PI
 
-If you assigned the hostname `retro` to your PI, you can log into it from a terminal on another machine on the same line like this:
+If you assigned the hostname `retro` to your PI, you can log into it from a terminal on another machine on the same LAN like this:
 ```
 ssh retro.local
 ```
