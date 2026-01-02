@@ -97,7 +97,7 @@ set tabstop=4 shiftwidth=4 noexpandtab
 EOF
 ```
 
-Press ^D to finish the `cat` command, then copy the same into the root home directory:
+Copy the same into the root home directory:
 
 ```
 sudo cp ~/.vimrc ~root/
