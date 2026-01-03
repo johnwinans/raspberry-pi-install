@@ -7,19 +7,23 @@ Note that there is a [YouTube Video](https://youtu.be/Mty1iGqhYuU) that discusse
 ## 2026-01-01 Update!
 
 The version described here is installed by using `rpi-imager` that can be run on any system that supports it.  
-I used a leap-frog approach to setting up a PI with a desktop that, in turn, is used to run the latest imager to image an SD card for a headless PI.
+I used a leap-frog approach to setting up a PI with a desktop that, in turn, is used to run the latest imager to configure an SD card for a headless PI.
 
 If the latest imager works on your exisating system then use it.  Else see below how I created an SD on my Linux desktop without an imager.
 
 ## The chicken & egg problem
 
-The older `rpi-imager` releases (less than 2.0) don't work properly with Trixie as they do not allow you to actually configure the installed image.  But they can be used to get Trixie onto the SD card in a way that you can boot on a PI with a keyboard & display and then configure by filling out the menu prompts that will appear during the first boot.
+WHen I tested some older `rpi-imager` releases (prior to 2.0), they did get a bootable image of Trixie onto an SD card.  But they didn't actually *configure* the image (so creating an SD card for a headless PI was unsuccessful.)  But they did get Trixie onto the SD card in a way that it did boot on a PI with a keyboard & display that could, then, be configured by filling out the menu prompts that will appear during the first boot.
 
-Alternately, you can use any Unix(ish) box to manually copy a bootable desktop image onto an SD card and... boot it on a PI with a keyboard & display and then configure by filling out the menu prompts that will appear during the first boot.
+Alternately, you can use any Unix(ish) box to manually copy the OS desktop image onto an SD card (again, without configuring it.)
+
+Therefore, this method can be used to create a new desktop system on a PI that can be used to run the `rpi-imager` *and* configure an SD card for use on a headless system!
+
+# Burning an SD card (without rpi-imager) to boot a desktop on a PI
 
 **WARNING** Doing this incorrectly can instantly, unrecoverably, destroy the filesystem on the machine you are using. Do not do this if you don't understand the process!!!!! **DO NOT blindly copy these commands expecting everything will be OK.**
 
-Download the latest OS image from raspberrypi.com.  The one I used while writing these notes is this:
+Download the latest OS image from raspberrypi.com.  The one I used while writing these notes is:
 
 	wget https://downloads.raspberrypi.com/raspios_arm64/images/raspios_arm64-2025-12-04/2025-12-04-raspios-trixie-arm64.img.xz
 
@@ -36,7 +40,7 @@ I then wipe and program the SD card like this (on my system, the SD card is `/de
 	sudo xzcat 2025-12-04-raspios-trixie-arm64.img.xz | sudo dd of=$SD bs=4M status=progress conv=fsync
 	sync
 
-At this point you have a bootable Trixie SD card with a full desktop that is unconfigured.  You can boot it on a PI with a keyboard and display.  It will ask you to create a user account, set the timezone and so on.  Then you can use it to run the latest `rpi-imager` and create an SD card configured as you want it.
+At this point you have a bootable Trixie SD card with a full desktop that is unconfigured.  It can boot on a PI with a keyboard and display.  It will boot into a configuration menu to create a user account, set the timezone and so on.  After that, it can be used to run the latest `rpi-imager` to create an SD card that can boot on a headless PI.
 
 # Burning an SD card using the rpi-imager version 2.x
 
