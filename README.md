@@ -201,7 +201,7 @@ hdmi_mode=16            # 1080p60
 # enable I2C on the Retro for the firmware programmer
 #dtparam=i2c_arm=on,i2c_arm_baudrate=400000 # conflict w/I2C on Retro
 
-# enable an extra LVTTL UART on the Nouveau
+# If you want one, enable extra LVTTL UART(s) (eg. on the Nouveau)
 #dtoverlay=uart3,ctsrts                     # conflict with SPI0_CE1_N on Nouveau
 #dtoverlay=uart3                            # GPIO 4, 5
 #dtoverlay=uart2,ctsrts                     # GPIO 0, 1, 2, 3   (conflict on Retro)
