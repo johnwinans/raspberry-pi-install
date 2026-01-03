@@ -54,51 +54,59 @@ Follow the bouncing ball...
 
 ### Select your favorite language:
 
-![Select Your Language](./pics/001.png)
+<img alt='Select Your Language' src='pics/001.png' width='500' />
 
-### I am using a PI 4B:
+### Select Your Board
+I am using a PI 4B:
 
-![Select Your Board](./pics/002.png)
+<img alt='Select Your Board' src='pics/002.png' width='500' />
 
-### Select the OS to install.  To boot headless, scroll down & select "Raspberry PI OS (other)."
+### Select the OS to install.
+To boot headless, scroll down & select "Raspberry PI OS (other)."
 
-![Select Other](./pics/003.png)
+<img alt='Select Other' src='./pics/003.png' width='500' />
 
 ### Click on Raspberry PI OS Lite (64-bit).
 
-![Raspberry PI OS Lite (64-bit)](./pics/004.png)
+<img alt='Raspberry PI OS Lite (64-bit)' src='./pics/004.png' width='500' />
 
-### Insert your SD card (I use a USB adapter) and it will appear in Storage Device menu:
+### Insert your SD card.
+I use a USB adapter. It will appear in Storage Device menu once plugged in.
 
-![Select Your SD Card Device](./pics/005.png)
+<img alt='Select Your SD Card Device' src='./pics/005.png' width='500' />
 
-### Set your new PI's hostname.  I named mine "retro"
+### Set your new PI's hostname.
+I named mine "retro"
 
-![Name Hostname](./pics/006.png)
+<img alt='Name Hostname' src='./pics/006.png' width='500' />
 
-### Set the Timezone & Keyboard type (mine is Chicago & US... I ignore the Capital City box.)
+### Set the Timezone & Keyboard type.
+Mine is Chicago & US.  (I ignore the Capital City box.)
 
-![Timezone & Keyboard](./pics/007.png)
+<img alt='Timezone & Keyboard' src='./pics/007.png' width='500' />
 
 ### Create a user login & set a password.
 
-![Login & Password](./pics/008.png)
+<img alt='Login & Password' src='./pics/008.png' width='500' />
 
-### If you use WiFI, configure it here.  I use hard-wire Ethernet. So I leave this all unset/blank.
+### If you use WiFI, configure it here.
+I use hard-wire Ethernet. So I leave this all unset/blank.
 
-![WiFI Stuff](./pics/009.png)
+<img alt='WiFI Stuff' src='./pics/009.png' width='500' />
 
-### Set a password or paste in your SSH public key.  I use a SSH public key.
+### Set a password or paste in your SSH public key.
+I use a SSH public key.
 
-![Authentication](./pics/010.png)
+<img alt='Authentication' src='./pics/010.png' width='500' />
 
-### I do not use Raspberry PI Connect.  I leave this turned off.
+### I do not use Raspberry PI Connect.
+I leave this turned off.
 
-![Remote Access Via PI Connect](./pics/011.png)
+<img alt='Remote Access Via PI Connect' src='./pics/011.png' width='500' />
 
 ### Final summary. Click the **write** button and get a cup of coffee.
 
-![Remote Access Via PI Connect](./pics/012.png)
+<img alt='Remote Access Via PI Connect' src='./pics/012.png' width='500' />
 
 When done imaging a new SD card, insert it into a PI, boot it, and finish configuring it.
 
