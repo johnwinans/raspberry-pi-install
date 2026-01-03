@@ -152,6 +152,7 @@ Run `raspi-config` in a terminal window and set the following options:
         System Options
             Boot
                 Console Text console
+			Auto Login
                 Console autologin is disabled
         Interfacing Options / Interface Options
             SSH enabled (this is still on from the imager earlier)
@@ -198,10 +199,10 @@ hdmi_force_hotplug=1
 hdmi_group=1            # use CEA modes
 hdmi_mode=16            # 1080p60
 
-# enable I2C on the Retro for the firmware programmer
-#dtparam=i2c_arm=on,i2c_arm_baudrate=400000 # conflict w/I2C on Retro
+# If setting up the Retro, uncomment for firmware programmer I2C w/fast baud rate
+#dtparam=i2c_arm=on,i2c_arm_baudrate=400000
 
-# If wanted, enable extra LVTTL UART(s) (eg. on the Nouveau)
+# If wanted, uncomment extra LVTTL UART(s) (eg. on the Nouveau)
 #dtoverlay=uart3,ctsrts                     # conflict with SPI0_CE1_N on Nouveau
 #dtoverlay=uart3                            # GPIO 4, 5
 #dtoverlay=uart2,ctsrts                     # GPIO 0, 1, 2, 3   (conflict on Retro)
