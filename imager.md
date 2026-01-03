@@ -27,7 +27,7 @@ I then wipe and program the SD card like this (on my system, the SD card is `/de
 
 	SD=/dev/sdb
 	sudo dd if=/dev/zero of=$SD bs=4M count=1 status=progress conv=fsync
-	sudo xzcat 2025-12-04-raspios-trixie-arm64.img.xz | dd of=$SD bs=4M status=progress conv=fsync
+	xzcat 2025-12-04-raspios-trixie-arm64.img.xz | sudo dd of=$SD bs=4M status=progress conv=fsync
 	sync
 
 At this point you have a bootable Trixie SD card with a full desktop that is unconfigured.  It can boot on a PI with a keyboard and display.  It will boot into a configuration menu to create a user account, set the timezone and so on.  After that, it can be used to run the latest `rpi-imager` to create an SD card that can boot on a headless PI.
