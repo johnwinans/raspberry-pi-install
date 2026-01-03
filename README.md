@@ -52,51 +52,51 @@ Run the imager:
 
 Follow the bouncing ball...
 
-Select your favorite language:
+### Select your favorite language:
 
 ![Select Your Language](./pics/001.png)
 
-I am using a PI 4B:
+### I am using a PI 4B:
 
 ![Select Your Board](./pics/002.png)
 
-Select the OS to install.  To boot headless, scroll down & select "Raspberry PI OS (other)."
+### Select the OS to install.  To boot headless, scroll down & select "Raspberry PI OS (other)."
 
 ![Select Other](./pics/003.png)
 
-Click on Raspberry PI OS Lite (64-bit).
+### Click on Raspberry PI OS Lite (64-bit).
 
 ![Raspberry PI OS Lite (64-bit)](./pics/004.png)
 
-Insert your SD card (I use a USB adapter) and it will appear in Storage Device menu:
+### Insert your SD card (I use a USB adapter) and it will appear in Storage Device menu:
 
 ![Select Your SD Card Device](./pics/005.png)
 
-Set your new PI's hostname.  I named mine "retro"
+### Set your new PI's hostname.  I named mine "retro"
 
 ![Name Hostname](./pics/006.png)
 
-Set the Timezone & Keyboard type (mine is Chicago & US... I ignore the Capital City box.)
+### Set the Timezone & Keyboard type (mine is Chicago & US... I ignore the Capital City box.)
 
 ![Timezone & Keyboard](./pics/007.png)
 
-Create a user login & set a password.
+### Create a user login & set a password.
 
 ![Login & Password](./pics/008.png)
 
-If you use WiFI, configure it here.  I use hard-wire Ethernet. So I leave this all unset/blank.
+### If you use WiFI, configure it here.  I use hard-wire Ethernet. So I leave this all unset/blank.
 
 ![WiFI Stuff](./pics/009.png)
 
-Set a password or paste in your SSH public key.  I use a SSH public key.
+### Set a password or paste in your SSH public key.  I use a SSH public key.
 
 ![Authentication](./pics/010.png)
 
-I do not use Raspberry PI Connect.  I leave this turned off.
+### I do not use Raspberry PI Connect.  I leave this turned off.
 
 ![Remote Access Via PI Connect](./pics/011.png)
 
-Final summary. Click the **write** button and get a cup of coffee.
+### Final summary. Click the **write** button and get a cup of coffee.
 
 ![Remote Access Via PI Connect](./pics/012.png)
 
