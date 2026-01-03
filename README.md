@@ -46,14 +46,51 @@ You can run `rpi-imager` on any system that supports the latest version (includi
 
 In order to connect to a PI the first time over the network, I use `ssh` with a public key (that the imager lets you paste into a config form.)  Otherwise you can configure it to let you log in using a password.
 
-XXX Note here the settings in the imager of interest for creating a headless system.  
-Specifically, set the hostname (I set mine to 'retro') and enable ssh.
+Run the imager:
 
-XXX add screenshots of what to do here.
+	sudo rpi-imager
 
-When done imaging a new SD card, boot it and finish configuring it.
+Follow the bouncing ball...
 
-# Configure the PI
+Select your favorite language:
+![Select Your Language](./pics/001.png)
+
+I am using a PI 4B:
+![Select Your Board](./pics/002.png)
+
+Select the OS to install.  To boot headless, scroll down & select "Raspberry PI OS (other)."
+![Select Other](./pics/003.png)
+
+Click on Raspberry PI OS Lite (64-bit).
+![Raspberry PI OS Lite (64-bit)](./pics/004.png)
+
+Insert your SD card (I use a USB adapter) and it will appear in Storage Device menu:
+![Select Your SD Card Device](./pics/005.png)
+
+Set your new PI's hostname.  I named mine "retro"
+![Name Hostname](./pics/006.png)
+
+Set the Timezone & Keyboard type (mine is Chicago & US... I ignore the Capital City box.)
+![Timezone & Keyboard](./pics/007.png)
+
+Create a user login & set a password.
+![Login & Password](./pics/008.png)
+
+If you use WiFI, configure it here.  I use hard-wire Ethernet. So I leave this all unset/blank.
+![WiFI Stuff](./pics/009.png)
+
+Set a password or paste in your SSH public key.  I use a SSH public key.
+![Authentication](./pics/010.png)
+
+I do not use Raspberry PI Connect.  I leave this turned off.
+![Remote Access Via PI Connect](./pics/011.png)
+
+Final summary. Click the **write** button and get a cup of coffee.
+![Remote Access Via PI Connect](./pics/012.png)
+
+When done imaging a new SD card, insert it into a PI, boot it, and finish configuring it.
+
+# Connect to and finish configuring the headless PI
 
 If you assigned the hostname `retro` when configuring your PI with the imager, you can log into it from a terminal on another machine on the same LAN like this:
 ```
@@ -65,7 +102,7 @@ If you get odd errors about ssh configurations, you can try to temporairly disab
 ssh -F /dev/null retro.local
 ```
 
-Once logged into your new PI (either via `ssh` or via keyboard & screen connected directly to your PI:
+Once logged into your new PI (either via `ssh` or via keyboard & screen connected directly to your PI):
 ```
 sudo apt update
 sudo apt upgrade
