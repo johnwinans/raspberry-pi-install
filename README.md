@@ -1,28 +1,21 @@
 # Installing Raspberry PI OS for Embedded Projects
 
-These are my notes on how I create SD and configure Raspberry PIs for projects that I share on YouTube.
-
-Note: This was last updated on 2026-01-01 (Happy New Year!) to reflect installing Raspberry PI OS Lite (64-bit) Trixie.
+These are my notes on how I image and configure SD cards for Raspberry PIs to use for projects that I share on YouTube.
 
 Note that there is a [YouTube Video](https://youtu.be/Mty1iGqhYuU) that discusses this REPO and shows the `rpi-imager` I used as well as how I then edited other configuration settings on the PI after it has booted the first time.
 
 ## 2026-01-01 Update!
 
-The version installed here has been installed using `rpi-imager` on a Raspberry PI because I could not get the latest imager to work on my desktop daily-driver.  Your mileage may vary.
+The version described here is installed by using `rpi-imager` that can be run on any system that supports it.  
+I used a leap-frog approach to setting up a PI with a desktop that, in turn, is used to run the latest imager to image an SD card for a headless PI.
 
-If the latest imager works on your system then use it.  Else see below how I created an SD on Linux without an imager.
+If the latest imager works on your exisating system then use it.  Else see below how I created an SD on my Linux desktop without an imager.
 
-Note that the 64-bit OS version simplifies the install of things like *ICE40 FPGA* development toolchain (some of which is not easily buildable on a 32-bit system.)
+## The chicken & egg problem
 
-# Format an SD card using rpi-imager 2
+The older `rpi-imager` releases (less than 2.0) don't work properly with Trixie as they do not allow you to actually configure the installed image.  But they can be used to get Trixie onto the SD card in a way that you can boot on a PI with a keyboard & display and then configure by filling out the menu prompts that will appear during the first boot.
 
-Note that using older `rpi-imager` releases (less than 2.0) don't work properly with Trixie as they do not appear to allow you to actually configure anything and thus leave you in search of a screen & keyboard to configure your PI during the first boot. Even so, this method can get you a basic system up and running that you can then configure manually when it boots.
-
-## A chicken & egg problem
-
-You can run the imager on an existing PI that is already running Trixie.
-
-Starting with a Linux box without the `rpi-imager`, I burned an SD card with a desktop Trixie image using the method discussed below.
+Alternately, you can use any Unix(ish) box to manually copy a bootable desktop image onto an SD card and... boot it on a PI with a keyboard & display and then configure by filling out the menu prompts that will appear during the first boot.
 
 **WARNING** Doing this incorrectly can instantly, unrecoverably, destroy the filesystem on the machine you are using. Do not do this if you don't understand the process!!!!! **DO NOT blindly copy these commands expecting everything will be OK.**
 
@@ -45,25 +38,28 @@ I then wipe and program the SD card like this (on my system, the SD card is `/de
 
 At this point you have a bootable Trixie SD card with a full desktop that is unconfigured.  You can boot it on a PI with a keyboard and display.  It will ask you to create a user account, set the timezone and so on.  Then you can use it to run the latest `rpi-imager` and create an SD card configured as you want it.
 
-# Burning an SD card using the rpi-imager
+# Burning an SD card using the rpi-imager version 2.x
 
 You can run `rpi-imager` on any system that supports the latest version (including a Raspberry PI.)  As of this writing I was able to use version 2.0.1 on a Raspberry PI running Trixie with a desktop.
 
 ## Setting up a headless system to boot with ssh enabled
 
-In order to connect to a PI the first time over the network, I use `ssh` with a public key (that the imager lets you paste into a config form.)  Otherwise you can conmfigure it to let you log into it using a password.
+In order to connect to a PI the first time over the network, I use `ssh` with a public key (that the imager lets you paste into a config form.)  Otherwise you can configure it to let you log in using a password.
 
-XXX Note the settings in the imager of interest for creating a headless system.  Specifically, set the hostname and enable ssh.
+XXX Note here the settings in the imager of interest for creating a headless system.  
+Specifically, set the hostname (I set mine to 'retro') and enable ssh.
+
 XXX add screenshots of what to do here.
 
 When done imaging a new SD card, boot it and finish configuring it.
 
 # Configure the PI
 
-If you assigned the hostname `retro` to your PI, you can log into it from a terminal on another machine on the same LAN like this:
+If you assigned the hostname `retro` when configuring your PI with the imager, you can log into it from a terminal on another machine on the same LAN like this:
 ```
 ssh retro.local
 ```
+
 If you get odd errors about ssh configurations, you can try to temporairly disable any configs on your local machine with the `-F` option like this (some of my systerms require various modes that are not always available on a new install):
 ```
 ssh -F /dev/null retro.local
@@ -262,14 +258,18 @@ git clone git@github.com:johnwinans/Verilog-Examples.git
 
 # make sure everything works:
 cd ~/fpga/2063-Z80-cpm
+
 cat - > Make.local <<EOF
 CROSS_AS_FLAGS=-I../lib -I../libnouveau
 BOOT_MSG=Z80 Nouveau
+SD_HOSTNAME=retro
+SD_DEV=/dev/sdb1
 EOF
+
 make world
-cd ~/fpga/2067-Z8S180/fpga
+
+cd ~/fpga/2067-Z8S180/fpga/nouveau-vdp99
 make world
-cd nouveau-vdp99
 make prog
 minicom -D /dev/ttyAMA0
 ```
