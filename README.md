@@ -270,7 +270,9 @@ This change will not be applied until the next reboot or you restart the `sshd` 
 
 
 
-# Install any tools & repos for your project(s)
+# Install tools & repos for your project(s)
+
+Note that the command below use `ssh` to access github.  See [Using HTTP](./http.md) if you don't have `ssh` set up for github.
 
 ## Z80-Retro!
 ```
