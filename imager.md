@@ -13,7 +13,9 @@ Running a desktop on a PI can *then* be used to run the latest `rpi-imager` *and
 
 **WARNING** Doing this incorrectly can instantly, unrecoverably, destroy the filesystem on the machine you are using. Do not do this if you don't understand the process!!!!! **DO NOT blindly copy these commands expecting everything will be OK.**
 
-Download the latest OS image from raspberrypi.com.  The one I used while writing these notes is:
+Download the latest Desktop OS image from https://www.raspberrypi.com/software/operating-systems/
+
+You can directly download the one I used while like this:
 
 	wget https://downloads.raspberrypi.com/raspios_arm64/images/raspios_arm64-2025-12-04/2025-12-04-raspios-trixie-arm64.img.xz
 
