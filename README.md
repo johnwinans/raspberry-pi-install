@@ -14,7 +14,7 @@ Some projects that have influenced the configuration choices made below:
 The version described here is installed by using `rpi-imager` that can be run on any system that supports it.  
 
 If the latest imager works on your existing system then use it.
-Else see [imager.md](./imager.md) for an alternate method I used to bootstrap a Raspberry PI Desktop SD card on my Linux desktop without using rpi-imager that, in turn, can be used to run the latest `rpi-imager`.
+Else see [imager.md](./imager.md) for a method that I used to set up an SD card with the Raspberry PI Desktop OS *without* using `rpi-imager` that, in turn, can run the latest `rpi-imager` (as discussed below) to properly configure a second SD card for use on a headless PI system.
 
 # Burning an SD card using the rpi-imager version 2.x
 
